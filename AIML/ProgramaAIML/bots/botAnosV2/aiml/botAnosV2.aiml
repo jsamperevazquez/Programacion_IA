@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<aiml version="2">
+   
+   <category>
+      <pattern> 
+         Nombre *
+      </pattern>
+      <template>
+         Hola <set name="userName"><star/></set>..., NICE TO MEET YOU.
+      </template>
+   </category>
+
+    <category>
+      <pattern> 
+         Edad * 
+      </pattern>
+      <template>
+         ufff <set name="age"><star/></set> anos, estás quemado tio.
+      </template>
+   </category>
+
+   <category>
+      <pattern> 
+         ^
+      </pattern>
+      <template>
+         HOLA USUARIO, DIME TU NOMBRE Y TU EDAD
+      </template>
+   </category>
+
+   <category>
+      <pattern>
+         Soy * y tengo * anos
+      </pattern>
+      <template>
+         Hola <set name="userName"><star/></set>,me acuerdo cuando yo tenia <set name="age"><star index="2"/></set> anos, ERA MARAVILLOSO!!!   
+      </template>
+   </category>
+
+   <category>
+   <pattern>
+      Que sabes de mis datos Eliza
+   </pattern>
+   <template>
+      <condition>
+         <li name="userName" value="unknown">No tengo ni idea de como te llamas.
+            <condition>
+               <li name="age" value="unknown">No sé tu edad.</li>
+               <li>Tines <get name="age"></get> anos</li>
+            </condition>    
+         </li>
+         <li>Te llamas <get name="userName"></get>
+            <condition>
+               <li name="age" value="unknown">No sé tu edad.</li>
+               <li>Tienes<get name="age"></get> anos</li>
+            </condition>
+         </li>
+      </condition>
+   </template>
+   </category>
+   
+</aiml>

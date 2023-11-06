@@ -1,0 +1,4 @@
+0,NOMBRE *,*,*,Hola <star/>...#Comma NICE TO MEET YOU.,botAnos.aiml
+0,EDAD *,*,*,ufff <star/> anos#Comma estás quemado tio.,botAnos.aiml
+0,^,*,*,HOLA USUARIO#Comma DIME TU NOMBRE Y TU EDAD,botAnos.aiml
+0,SOY * Y TENGO * ANOS,*,*,Hola <star/>#Commame acuerdo cuando yo tenia <star index="2"/> anos#Comma ERA MARAVILLOSO!!!,botAnos.aiml
