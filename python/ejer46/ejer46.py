@@ -13,18 +13,18 @@ def calculate_price(estates):
         match i['zona']:
             case 'A':
                 if i['garaxe']:
-                    i['prezo'] = (i['metros'] * 1000 + i['habitacións'] * 5000 + 15000 *
-                                  1 - (YEAR - i['ano'] / 100))
+                    i['prezo'] = ((i['metros'] * 1000 + i['habitacións'] * 5000 + 15000) *
+                                  (1 - (YEAR - i['ano']) / 100)).__round__(1)
                 else:
-                    i['prezo'] = (i['metros'] * 1000 + i['habitacións'] * 5000 *
-                                  1 - (YEAR - i['ano'] / 100))
+                    i['prezo'] = ((i['metros'] * 1000 + i['habitacións'] * 5000) *
+                                  (1 - (YEAR - i['ano']) / 100)).__round__(1)
             case ' B':
                 if i['garaxe']:
                     i['prezo'] = (i['metros'] * 1000 + i['habitacións'] * 5000 + 15000 *
-                                  1 - (YEAR - i['ano'] / 100)) * 1.5
+                                  (1 - (YEAR - i['ano']) / 100)) * 1.5.__round__(1)
                 else:
                     i['prezo'] = (i['metros'] * 1000 + i['habitacións'] * 5000 *
-                                  1 - (YEAR - i['ano'] / 100)) * 1.5
+                                  (1 - (YEAR - i['ano']) / 100)) * 1.5.__round__(1)
     return estates
 
 
@@ -34,4 +34,3 @@ def search_estates(estates, amount):
 
 
 print(search_estates(estate_lst, 180000))
-
