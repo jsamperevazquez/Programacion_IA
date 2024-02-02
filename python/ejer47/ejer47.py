@@ -12,18 +12,39 @@ Lembra que o tablero é de 3 x 3. Fara representalo quizais sexa o mellor repres
 """
 import numpy as np
 
-board = np.array([[None, None, None], [None, None, None], [None, None, None]])
+board = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+WINNER_COMBOS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+]
 token_1 = "X"
 token_2 = "O"
 
 
-def update_board():
+def update_board(board_up):
     pass
 
 
-def check_winner():
+def check_winner(board_to_check):
     pass
 
 
-print(board)
+def show_board(new_board):
+    for i in new_board:
+        print(i)
+
+    position = int(input("Introduce posición en el tablero\n"))
+    new_board[0][position] = token_1
+    update_board(new_board)
+    check_winner(new_board)
+    show_board(new_board)
+
+
+show_board(board)
 
