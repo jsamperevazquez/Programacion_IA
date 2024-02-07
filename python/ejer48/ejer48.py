@@ -1,21 +1,24 @@
 def validate_number(number):
-    sum = 0
-    number = number.replace(' ', '')
-    print(number)
-    for num in number[::-1]:
-        num = int(num)
-        sum += num
-    print(sum)
-
-    number = int(number)
-    if number <= 9:
+    # Corto la cadena por cada espacio y chequeo que tengan la longitud mínima
+    if len(number.split()) <= 1:
         raise_exception()
-    count = 1
-    while number > 9:
-        number = number // 10
-        count += 1
-
-    print(f"Tiene {count} dígitos")
+    # Elimino los espacios en blanco
+    number_to = number.replace(' ', '')
+    # Uso slice para crear subcadenas de posiciones pares e impares empezando por el final
+    impair_pos = list(map(int, number_to[-1::-2]))
+    pair_pos = list(map(int, number_to[-2::-2]))
+    # Utilizo función map con lambda para doblar y restar 9 si > 9
+    double_val = list(map(lambda x: x * 2, pair_pos))
+    double_val = list(map(lambda x: x - 9 if x > 9 else x, double_val))
+    # Concateno ambas listas
+    sum_list = double_val + impair_pos
+    # Compruebo si el ∑ de todos los elementos de la lista es divisible entre 10
+    if sum(sum_list) % 10 == 0:
+        print(f'{number} es un número válido')
+        return True
+    else:
+        raise_exception()
+    return False
 
 
 def raise_exception():
@@ -32,5 +35,5 @@ class Users:
             validate_number(self.key_number)
 
 
-user1 = Users('Angel', user_name='Ritrux', password='<PASSWORD>', key_number='4539 3195 0343 6467')
-
+if __name__ == '__main__':
+    user1 = Users('Angel', user_name='Ritrux', password='<PASSWORD>', key_number='4539 3195 0343 6467')
