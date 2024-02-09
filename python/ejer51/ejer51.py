@@ -4,7 +4,7 @@ import sys
 
 
 class Black_jack:
-    CARDS = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'J': 10, 'Q': 10, 'K': 10,
+    CARDS = {'K': 10,
              'A': [1, 11]}
     player_values = []
     player_cards = {}
@@ -13,25 +13,27 @@ class Black_jack:
 
     def __init__(self, player_game):
         self.player = player_game
-        print(f"Bienvenido al juego del Black jack {self.player.player_name}")
+        print(f"Bienvenido al juego del Black Jack {self.player.player_name}")
         print("Recuerde jugar con responsabilidad")
         self.give_card()
 
     def give_card(self):
         random_key = random.choice(list(self.CARDS.keys()))
-        if random_key.__eq__("A") and sum(self.player_values) <= 10:
-            self.player_values.append(self.CARDS[random_key][1])
-        if random_key.__eq__("A") and sum(self.player_values) > 10:
-            self.player_values.append(self.CARDS[random_key][0])
-        key_value = self.CARDS[random_key]
-        self.player_values.append(key_value)
+        if random_key == "A":
+            if sum(self.player_values) <= 10:
+                self.player_values.append(11)
+            elif sum(self.player_values) > 10:
+                self.player_values.append(1)
+        else:
+            key_value = self.CARDS[random_key]
+            self.player_values.append(key_value)
         print(f"Te ha salido: {random_key}")
         self.check_sum_card(self.player_values)
         self.choose_card()
 
     def choose_card(self):
         option = input("Desea otra Carta? Y o N \n").lower()
-        if option.__eq__("y"):
+        if option == "y":
             self.give_card()
         else:
             print(f"Te has plantado con la cantidad de {sum(self.player_values)}\n"
@@ -48,18 +50,23 @@ class Black_jack:
 
     def home_turn(self):
         random_home_key = random.choice(list(self.CARDS.keys()))
-        random_home_value = self.CARDS[random_home_key]
-        self.home_values.append(random_home_value)
-        print(f"Ha salido: {random_home_key}, la casa suma: {random_home_value}")
-        while sum(self.home_values) < sum(self.player_values):
-            if random_home_key.__eq__("A") and sum(self.home_values) <= 10:
-                self.player_values.append(random_home_key[1])
-            if random_home_key.__eq__("A") and sum(self.home_values) > 10:
-                self.player_values.append(random_home_key[0])
-            random_home_key = random.choice(list(self.CARDS.keys()))
+        if random_home_key == "A":
+            self.home_values.append(11)
+        else:
             random_home_value = self.CARDS[random_home_key]
             self.home_values.append(random_home_value)
-            print(f"Ha salido {random_home_key} la casa suma: {sum(self.home_values)}")
+        print(f"Ha salido: {random_home_key}")
+        while sum(self.home_values) < sum(self.player_values):
+            random_home_key = random.choice(list(self.CARDS.keys()))
+            if random_home_key == "A":
+                if sum(self.home_values) <= 10:
+                    self.player_values.append(11)
+                elif sum(self.home_values) > 10:
+                    self.player_values.append(1)
+                else:
+                    random_home_value = self.CARDS[random_home_key]
+                    self.home_values.append(random_home_value)
+            print(f"Ha salido {random_home_key}")
         print(f"La casa: {self.home_values}")
         print(f"{self.player.player_name}: {self.player_values}")
         self.check_winner(sum(self.player_values), sum(self.home_values))
@@ -93,3 +100,5 @@ class player:
 
 player_1 = player("Angel", 21)
 game_1 = Black_jack(player_1)
+
+
