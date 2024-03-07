@@ -34,25 +34,15 @@ class Alien:
 
 
 def alien_creator(start_positions: list[tuple]) -> list[Alien]:
-    alien_list = [Alien([position[0] for position in start_positions],
-                        [position[1] for position in start_positions])]
+    alien_list = [Alien(position[0], position[1]) for position in start_positions]
     return alien_list
 
 
 if __name__ == '__main__':
     try:
-        alien1 = Alien(2, 1)
-        alien2 = Alien(4, 8, 1)
-        try:
-            alien1.hit()
-        except ValueError as e:
-            print(f"No se puede tener 0 o menos vidas, error: {type(e).__name__}")
-        try:
-            alien2.hit()
-        except ValueError as e:
-            print(f"No se puede tener 0 o menos vidas, error: {type(e).__name__}")
-        alien_creator([(4, 7), (-1, 0)])
         alien_start_positions = [(4, 7), (-1, 0)]
         aliens = alien_creator(alien_start_positions)
+        for alien in aliens:
+            print(f"Coordenadas de aliens: X: {alien.x}, Y: {alien.y}")
     except ValueError as e:
         print(f"No se puede tener 0 o menos vidas {e}")
