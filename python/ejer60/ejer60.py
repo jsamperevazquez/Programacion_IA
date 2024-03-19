@@ -31,7 +31,7 @@ plt.title('Adaptative Gaussian')
 plt.show()
 
 # Detección de contornos
-cnts, hierarchy = cv.findContours(adaptative_Gaussian, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+cnts, hierarchy = cv.findContours(adaptative_Gaussian, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 con_contornos = cv.cvtColor(adaptative_Gaussian, cv.COLOR_GRAY2BGR)
 cv.drawContours(con_contornos, cnts, -1, (0, 255, 0), 2)
 plt.imshow(con_contornos, cmap='gray')
