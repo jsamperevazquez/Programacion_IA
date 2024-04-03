@@ -9,4 +9,4 @@ def test_create_user_dlib():
 
 
 def test_create_new_register():
-    user.create_table_image_name(user.img_uri, user.user_name)
+    user.register_new_user(user.img_uri, user.user_name)
