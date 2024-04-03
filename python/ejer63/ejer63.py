@@ -4,6 +4,7 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 import dlib
+import os
 
 
 class BD:
@@ -11,7 +12,8 @@ class BD:
     cursor: sqlite3.Cursor
 
     def open_database(self):
-        self.conn = sqlite3.connect('bd/datosDLIB.db')
+        database_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "bd/datosDLIB.db"))
+        self.conn = sqlite3.connect(database_path)
         self.cursor = self.conn.cursor()
 
     def close_database(self):
