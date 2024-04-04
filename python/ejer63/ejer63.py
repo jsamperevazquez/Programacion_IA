@@ -27,7 +27,7 @@ class BD:
         self.cursor.execute("INSERT INTO users_vectors (user_name, vector) VALUES (?, ?)", (name, vector_str))
         self.conn.commit()
 
-    def select_all_users(self):
+    def select_all_users(self) -> list:
         self.cursor.execute("SELECT * FROM users_vectors")
         users = self.cursor.fetchall()
         return users
@@ -103,3 +103,5 @@ if __name__ == '__main__':
     user2 = UserDlib("imaxes/angel.jpg", "Angel")
     user.register_new_user(user.img_uri, user.user_name)
     user2.register_new_user(user2.img_uri, user2.user_name)
+    user3 = UserDlib("imaxes/bruce.jpeg", "Bruce")
+    user.register_new_user(user3.img_uri, user3.user_name)
