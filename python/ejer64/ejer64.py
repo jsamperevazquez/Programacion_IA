@@ -12,7 +12,7 @@ class Identifier:
     FACE_REC_MODEL: str
     DETECTOR: dlib
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.PREDICTOR = "shape_predictor_5_face_landmarks.dat"
         self.FACE_REC_MODEL = "dlib_face_recognition_resnet_model_v1.dat"
         self.DETECTOR = dlib.get_frontal_face_detector()
@@ -20,7 +20,7 @@ class Identifier:
         self.SP = dlib.shape_predictor(self.PREDICTOR)
         self.FACE_REC = dlib.face_recognition_model_v1(self.FACE_REC_MODEL)
 
-    def identify_users(self, img: str):
+    def identify_users(self, img: str) -> None:
         tolerance = 0.6
         known_face_encodings = []
         face_names = []
@@ -67,3 +67,4 @@ class Identifier:
 if __name__ == '__main__':
     iden = Identifier()
     iden.identify_users("imaxes/ironmaiden.jpg")
+    iden.identify_users("imaxes/papaMateo.jpg")
