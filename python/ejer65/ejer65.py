@@ -36,3 +36,25 @@ video_capture.release()
 cv2.destroyAllWindows()
 
 """
+
+import cv2
+
+video_capture = cv2.VideoCapture(0)
+
+while True:
+    # Captura un frame
+    ret, frame = video_capture.read()
+
+    # para procesar o frame con outras ferramentas seguramente habería que convertilo a RGB
+    # (Lembra que opencv traballa con BGR)
+
+    # Amosa a imaxe resultante
+    cv2.imshow('Video', frame)
+
+    # Pulsa 'q' para saír!
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Libera a cámara
+# video_capture.release()
+# cv2.destroyAllWindows()
