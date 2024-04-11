@@ -1,9 +1,14 @@
 name: opencv
 channels:
+  - pytorch
   - conda-forge
   - defaults
 dependencies:
   - python=3.10
+  - pytorch
+  - pytest
+  - pandas
+  - scikit-learn
   - opencv
   - jupyter
   - matplotlib
