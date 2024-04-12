@@ -1,4 +1,4 @@
-name: opencv
+name: programacionIA
 channels:
   - pytorch
   - conda-forge
@@ -9,6 +9,9 @@ dependencies:
   - pytest
   - pandas
   - scikit-learn
+  - torchvision
+  - torchaudio
+  - cpuonly
   - opencv
   - jupyter
   - matplotlib
